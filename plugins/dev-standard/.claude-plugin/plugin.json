@@ -2,5 +2,8 @@
   "name": "dev-standard",
   "version": "2.0.0",
   "description": "조직 표준 하네스: 이슈 처리, 영향 범위 조사, 품질 게이트, main 보호",
-  "author": { "name": "플랫폼 엔지니어링" }
+  "author": { "name": "플랫폼 엔지니어링" },
+  "dependencies": [
+    { "name": "github-issues", "version": "~1.0.0" }
+  ]
 }

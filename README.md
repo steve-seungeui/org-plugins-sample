@@ -4,22 +4,21 @@
 
 | 플러그인 | 내용 |
 | --- | --- |
-| `plugins/org-standard` | 조직 표준 플러그인 묶음. `dev-standard ~2.0.0`과 `github-issues ~1.0.0`에 의존한다 |
-| `plugins/dev-standard` | 이슈 처리 절차, 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호와 평가 사례 |
+| `plugins/dev-standard` | 이슈 처리 절차, 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호. `github-issues ~1.0.0`에 의존한다 |
 | `plugins/github-issues` | GitHub 이슈를 조회하는 GitHub MCP 서버 |
 
 ## 마켓플레이스로 설치하기
 
 이 저장소는 `org-plugins` 마켓플레이스다. `.claude-plugin/marketplace.json`이 마켓플레이스에 등록된 플러그인과 각 플러그인의 위치를 정한다.
 
-Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `org-standard`와 의존하는 두 플러그인을 설치한다.
+Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `dev-standard`와 의존하는 `github-issues`를 설치한다.
 
 ```text
 /plugin marketplace add steve-seungeui/org-plugins-sample#ch12/github-issues
-/plugin install org-standard@org-plugins
+/plugin install dev-standard@org-plugins
 ```
 
-조직의 모든 개발자에게 설치하려면 관리형 설정의 `extraKnownMarketplaces`에 이 마켓플레이스를 등록하고 `enabledPlugins`에 `org-standard@org-plugins`, `dev-standard@org-plugins`, `github-issues@org-plugins`를 `true`로 지정한다. 의존성의 버전 범위는 `<플러그인 이름>--v<버전>` 형식의 릴리스 태그로 해석되며, 태그는 플러그인 디렉터리에서 `claude plugin tag --push`로 만든다.
+조직의 모든 개발자에게 설치하려면 관리형 설정의 `extraKnownMarketplaces`에 이 마켓플레이스를 등록하고 `enabledPlugins`에 `dev-standard@org-plugins`와 `github-issues@org-plugins`를 `true`로 지정한다. 의존성의 버전 범위는 `<플러그인 이름>--v<버전>` 형식의 릴리스 태그로 해석되며, 태그는 플러그인 디렉터리에서 `claude plugin tag --push`로 만든다.
 
 ## 저장소에 두는 품질 게이트 설정
 
@@ -40,18 +39,19 @@ Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등
 ## 로컬에서 시험하기
 
 ```bash
-claude plugin validate ./plugins/dev-standard
-claude --plugin-dir ./plugins/dev-standard
+claude plugin validate .
+claude --plugin-dir ./plugins
 ```
+
+`--plugin-dir`에 `plugins` 디렉터리를 지정하면 `dev-standard`와 의존하는 `github-issues`가 함께 로드된다.
 
 GitHub MCP 서버가 사용하는 토큰은 세션에서 `/plugin configure github-issues` 명령을 실행해 입력한다.
 
 ## 평가하기
 
-`plugins/dev-standard/evals/`에 회의실 예약 저장소의 이슈 4번을 처리하는 평가 사례가 있다. 플러그인 디렉터리에서 실행한다. 각 실행은 실제 모델을 호출하므로 비용이 든다.
+`evals/`에 회의실 예약 저장소의 이슈 4번을 처리하는 평가 사례가 있다. 사례는 `dev-standard`와 `github-issues`를 함께 로드한다. 저장소의 루트에서 실행하며, 각 실행은 실제 모델을 호출하므로 비용이 든다.
 
 ```bash
-cd plugins/dev-standard
 claude plugin eval . --scaffold --allow-tools Bash Edit Write
 ```
 
