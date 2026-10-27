@@ -4,9 +4,19 @@
   "owner": { "name": "플랫폼 엔지니어링" },
   "plugins": [
     {
+      "name": "org-standard",
+      "source": "./plugins/org-standard",
+      "description": "조직의 모든 개발자에게 배포하는 표준 플러그인 묶음"
+    },
+    {
       "name": "dev-standard",
       "source": "./plugins/dev-standard",
       "description": "이슈 처리, 영향 범위 조사, 품질 게이트, main 보호"
+    },
+    {
+      "name": "github-issues",
+      "source": "./plugins/github-issues",
+      "description": "GitHub 이슈를 조회하는 GitHub MCP 서버"
     }
   ]
 }

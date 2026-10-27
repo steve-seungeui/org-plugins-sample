@@ -1,0 +1,10 @@
+{
+  "name": "org-standard",
+  "version": "1.0.0",
+  "description": "조직의 모든 개발자에게 배포하는 표준 플러그인 묶음",
+  "author": { "name": "플랫폼 엔지니어링" },
+  "dependencies": [
+    { "name": "dev-standard", "version": "~2.0.0" },
+    { "name": "github-issues", "version": "~1.0.0" }
+  ]
+}

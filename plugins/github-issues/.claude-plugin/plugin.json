@@ -1,0 +1,14 @@
+{
+  "name": "github-issues",
+  "version": "1.0.0",
+  "description": "GitHub 이슈를 조회하는 GitHub MCP 서버",
+  "author": { "name": "플랫폼 엔지니어링" },
+  "userConfig": {
+    "github_token": {
+      "type": "string",
+      "title": "GitHub 토큰",
+      "description": "이슈를 조회할 때 사용하는 GitHub 개인 액세스 토큰",
+      "sensitive": true
+    }
+  }
+}
