@@ -12,7 +12,7 @@
 
 이 저장소는 `org-plugins` 마켓플레이스다. `.claude-plugin/marketplace.json`이 마켓플레이스에 등록된 플러그인과 각 플러그인의 위치를 정한다.
 
-Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `dev-standard`를 설치한다.
+Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `org-standard`와 의존하는 두 플러그인을 설치한다.
 
 ```text
 /plugin marketplace add steve-seungeui/org-plugins-sample#ch12/github-issues
