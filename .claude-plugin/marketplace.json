@@ -1,0 +1,12 @@
+{
+  "name": "org-plugins",
+  "description": "조직이 모든 저장소에 배포하는 표준 플러그인",
+  "owner": { "name": "플랫폼 엔지니어링" },
+  "plugins": [
+    {
+      "name": "dev-standard",
+      "source": "./plugins/dev-standard",
+      "description": "이슈 처리, 영향 범위 조사, 품질 게이트, main 보호"
+    }
+  ]
+}
