@@ -4,7 +4,9 @@
 
 | 플러그인 | 내용 |
 | --- | --- |
-| `plugins/dev-standard` | 이슈 처리 절차, 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호, GitHub MCP 서버 |
+| `plugins/org-standard` | 조직 표준 플러그인 묶음. `dev-standard ~2.0.0`과 `github-issues ~1.0.0`에 의존한다 |
+| `plugins/dev-standard` | 이슈 처리 절차, 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호와 평가 사례 |
+| `plugins/github-issues` | GitHub 이슈를 조회하는 GitHub MCP 서버 |
 
 ## 마켓플레이스로 설치하기
 
@@ -13,10 +15,11 @@
 Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `dev-standard`를 설치한다.
 
 ```text
-/plugin install dev-standard --marketplace steve-seungeui/org-plugins-sample
+/plugin marketplace add steve-seungeui/org-plugins-sample#ch12/github-issues
+/plugin install org-standard@org-plugins
 ```
 
-조직의 모든 개발자에게 설치하려면 관리형 설정의 `extraKnownMarketplaces`에 이 마켓플레이스를 등록하고 `enabledPlugins`에 `dev-standard@org-plugins`를 `true`로 지정한다.
+조직의 모든 개발자에게 설치하려면 관리형 설정의 `extraKnownMarketplaces`에 이 마켓플레이스를 등록하고 `enabledPlugins`에 `org-standard@org-plugins`, `dev-standard@org-plugins`, `github-issues@org-plugins`를 `true`로 지정한다. 의존성의 버전 범위는 `<플러그인 이름>--v<버전>` 형식의 릴리스 태그로 해석되며, 태그는 플러그인 디렉터리에서 `claude plugin tag --push`로 만든다.
 
 ## 저장소에 두는 품질 게이트 설정
 
@@ -41,7 +44,16 @@ claude plugin validate ./plugins/dev-standard
 claude --plugin-dir ./plugins/dev-standard
 ```
 
-GitHub MCP 서버가 사용하는 토큰은 세션에서 `/plugin configure dev-standard` 명령을 실행해 입력한다.
+GitHub MCP 서버가 사용하는 토큰은 세션에서 `/plugin configure github-issues` 명령을 실행해 입력한다.
+
+## 평가하기
+
+`plugins/dev-standard/evals/`에 회의실 예약 저장소의 이슈 4번을 처리하는 평가 사례가 있다. 플러그인 디렉터리에서 실행한다. 각 실행은 실제 모델을 호출하므로 비용이 든다.
+
+```bash
+cd plugins/dev-standard
+claude plugin eval . --scaffold --allow-tools Bash Edit Write
+```
 
 ## 라이선스
 
