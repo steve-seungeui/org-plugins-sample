@@ -4,7 +4,7 @@
 
 | 플러그인 | 내용 |
 | --- | --- |
-| `plugins/dev-standard` | 이슈 처리 절차, 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호. `github-issues ~1.0.0`에 의존한다 |
+| `plugins/dev-standard` | 코드 변경 절차(이슈 처리 포함), 영향 범위 조사 서브에이전트, 품질 게이트, main 브랜치 보호. `github-issues ~1.0.0`에 의존한다 |
 | `plugins/github-issues` | GitHub 이슈를 조회하는 GitHub MCP 서버 |
 
 ## 마켓플레이스로 설치하기
@@ -14,7 +14,7 @@
 Claude Code 세션에서 다음 명령을 실행하면 마켓플레이스를 등록하고 `dev-standard`와 의존하는 `github-issues`를 설치한다.
 
 ```text
-/plugin marketplace add steve-seungeui/org-plugins-sample#ch12/github-issues
+/plugin marketplace add steve-seungeui/org-plugins-sample
 /plugin install dev-standard@org-plugins
 ```
 
