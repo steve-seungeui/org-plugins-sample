@@ -49,10 +49,16 @@ GitHub MCP 서버가 사용하는 토큰은 세션에서 `/plugin configure gith
 
 ## 평가하기
 
-`evals/`에 회의실 예약 저장소의 이슈 4번을 처리하는 평가 사례가 있다. 사례는 `dev-standard`와 `github-issues`를 함께 로드한다. 저장소의 루트에서 실행하며, 각 실행은 실제 모델을 호출하므로 비용이 든다.
+`evals/`에 회의실 예약 저장소를 대상으로 하는 평가 사례 두 개가 있다. `floor-filter-issue`는 이슈 번호로 이슈 4번의 처리를 맡기는 요청이고, `schedule-range-request`는 이슈 번호 없이 회의실 일정의 기간 조회 기능을 설명해 맡기는 요청이다. 두 사례 모두 `dev-standard`와 `github-issues`를 함께 로드하고, Claude가 이슈 처리 스킬을 호출해 영향 범위 조사와 테스트 작성을 거쳐 구현하는지 채점한다. 저장소의 루트에서 실행하며, 각 실행은 실제 모델을 호출하므로 비용이 든다.
 
 ```bash
 claude plugin eval . --scaffold --allow-tools Bash Edit Write
+```
+
+사례 하나만 실행하려면 `--case`에 사례 이름을 지정한다.
+
+```bash
+claude plugin eval . --case schedule-range-request --scaffold --allow-tools Bash Edit Write
 ```
 
 ## 라이선스
